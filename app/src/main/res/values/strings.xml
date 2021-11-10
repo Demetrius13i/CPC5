@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">CPC5</string>
+    <string name="stringFromPoem">Строчка из стиха</string>
 </resources>

@@ -5,8 +5,9 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.TextView
 
-
+private const val KEY_FOR_STATE = "KeyForState"
 private const val TAG_FOR_PUSHKIN = "PushkinTag"
+var indexPoem = 0
 
 /* Стихотворение, которое мы будем выводить в Лог через жизненные циклы
 
@@ -27,59 +28,94 @@ val thePoem = listOf(
     "Прекрасно море в бурной мгле",     //8
     "И небо в блесках без лазури;",     //9
     "Но верь мне: дева на скале",       //10
-    "Прекрасней волн, небес и бури")    //11
+    "Прекрасней волн, небес и бури"     //11
+)
 
 class MainActivity : AppCompatActivity() {
-
-    val titleOfPoem: TextView= findViewById(R.id.titleOfLine)
+    private lateinit var titleOfPoem: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        titleOfPoem = findViewById(R.id.titleOfLine)
 
-        titleOfPoem.text= thePoem[0]
+        Log.d(TAG_FOR_PUSHKIN,"onCreateTest")
 
-        Log.d(TAG_FOR_PUSHKIN, "onCreate():${thePoem[0]}")
+        if (savedInstanceState != null) {
+            titleOfPoem.text = savedInstanceState.getString(KEY_FOR_STATE)
+        }
+
+        if (indexPoem == indexPoem + 1) {
+            titleOfPoem.text = thePoem[indexPoem]
+        } else {
+            titleOfPoem.text = thePoem[0]
+        }
+        Log.d(TAG_FOR_PUSHKIN, "onCreate():${thePoem[indexPoem]}")
+        indexPoem = indexPoem + 1
     }
 
     override fun onStart() {
         super.onStart()
 
-        titleOfPoem.text= thePoem[1]
+        Log.d(TAG_FOR_PUSHKIN,"onStartTest")
 
-        Log.d(TAG_FOR_PUSHKIN, "onStart():${thePoem[1]}")
+        if (indexPoem == indexPoem + 1) {
+            titleOfPoem.text = thePoem[indexPoem]
+            Log.d(TAG_FOR_PUSHKIN, "onStart():${thePoem[indexPoem]}")
+        }
+        indexPoem = indexPoem + 1
     }
 
     override fun onResume() {
         super.onResume()
 
-        titleOfPoem.text= thePoem[2]
+        Log.d(TAG_FOR_PUSHKIN,"onResumeTest")
 
-        Log.d(TAG_FOR_PUSHKIN, "onResume():${thePoem[2]}")
+        if (indexPoem == indexPoem + 1) {
+            titleOfPoem.text = thePoem[indexPoem]
+            Log.d(TAG_FOR_PUSHKIN, "onResume():${thePoem[2]}")
+        }
+        indexPoem = indexPoem + 1
     }
 
     override fun onPause() {
         super.onPause()
 
-        titleOfPoem.text= thePoem[3]
+        Log.d(TAG_FOR_PUSHKIN,"onPauseTest")
 
-        Log.d(TAG_FOR_PUSHKIN, "onPause():${thePoem[3]}")
+        if (indexPoem == indexPoem + 1) {
+            titleOfPoem.text = thePoem[indexPoem]
+            Log.d(TAG_FOR_PUSHKIN, "onPause():${thePoem[3]}")
+        }
+        indexPoem = indexPoem + 1
     }
 
     override fun onStop() {
         super.onStop()
 
-        titleOfPoem.text= thePoem[4]
+        Log.d(TAG_FOR_PUSHKIN,"onStopTest")
 
-        Log.d(TAG_FOR_PUSHKIN, "onStop():${thePoem[4]}")
+        if (indexPoem == indexPoem + 1) {
+            titleOfPoem.text = thePoem[indexPoem]
+            Log.d(TAG_FOR_PUSHKIN, "onStop():${thePoem[4]}")
+        }
+        indexPoem = indexPoem + 1
     }
 
     override fun onDestroy() {
         super.onDestroy()
 
-        titleOfPoem.text= thePoem[5]
+        Log.d(TAG_FOR_PUSHKIN,"onDestroyTest")
 
-        Log.d(TAG_FOR_PUSHKIN, "onDestroy():${thePoem[5]}")
+        if (indexPoem == indexPoem + 1) {
+            titleOfPoem.text = thePoem[indexPoem]
+            Log.d(TAG_FOR_PUSHKIN, "onDestroy():${thePoem[5]}")
+        }
+        indexPoem = indexPoem + 1
     }
 
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putString(KEY_FOR_STATE, titleOfPoem.text.toString())
+    }
 }
