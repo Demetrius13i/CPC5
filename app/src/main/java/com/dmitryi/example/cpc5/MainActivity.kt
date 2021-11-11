@@ -34,88 +34,87 @@ val thePoem = listOf(
 class MainActivity : AppCompatActivity() {
     private lateinit var titleOfPoem: TextView
 
+    fun nextStep () {
+        indexPoem = indexPoem + 1
+    }
+
+    fun printText () {
+        titleOfPoem.text = thePoem[indexPoem]
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         titleOfPoem = findViewById(R.id.titleOfLine)
-
-        Log.d(TAG_FOR_PUSHKIN, "onCreateTest")
 
         if (savedInstanceState != null) {
             titleOfPoem.text = savedInstanceState.getString(KEY_FOR_STATE)
         }
 
         if (indexPoem == indexPoem) {
-            titleOfPoem.text = thePoem[indexPoem]
+            printText()
         } else {
             titleOfPoem.text = thePoem[indexPoem + 1]
         }
         Log.d(TAG_FOR_PUSHKIN, "onCreate():${thePoem[indexPoem]}")
-        indexPoem = indexPoem + 1
+        nextStep()
     }
 
     override fun onStart() {
         super.onStart()
 
-        Log.d(TAG_FOR_PUSHKIN, "onStartTest")
-
         if (indexPoem == indexPoem) {
-            titleOfPoem.text = thePoem[indexPoem]
+            printText()
             Log.d(TAG_FOR_PUSHKIN, "onStart():${thePoem[indexPoem]}")
         }
-        indexPoem = indexPoem + 1
+        nextStep()
     }
 
     override fun onResume() {
         super.onResume()
 
-        Log.d(TAG_FOR_PUSHKIN, "onResumeTest")
-
         if (indexPoem == indexPoem) {
-            titleOfPoem.text = thePoem[indexPoem]
+            printText()
             Log.d(TAG_FOR_PUSHKIN, "onResume():${thePoem[indexPoem]}")
         }
-        indexPoem = indexPoem + 1
+        nextStep()
     }
 
     override fun onPause() {
         super.onPause()
 
-        Log.d(TAG_FOR_PUSHKIN, "onPauseTest")
-
         if (indexPoem == indexPoem) {
-            titleOfPoem.text = thePoem[indexPoem]
+            printText()
             Log.d(TAG_FOR_PUSHKIN, "onPause():${thePoem[indexPoem]}")
         }
-        indexPoem = indexPoem + 1
+        nextStep()
     }
 
     override fun onStop() {
         super.onStop()
 
-        Log.d(TAG_FOR_PUSHKIN, "onStopTest")
-
         if (indexPoem == indexPoem) {
-            titleOfPoem.text = thePoem[indexPoem]
+            printText()
             Log.d(TAG_FOR_PUSHKIN, "onStop():${thePoem[indexPoem]}")
         }
-        indexPoem = indexPoem + 1
+        nextStep()
     }
 
     override fun onDestroy() {
         super.onDestroy()
 
-        Log.d(TAG_FOR_PUSHKIN, "onDestroyTest")
-
         if (indexPoem == indexPoem) {
-            titleOfPoem.text = thePoem[indexPoem]
+            printText()
             Log.d(TAG_FOR_PUSHKIN, "onDestroy():${thePoem[indexPoem]}")
         }
-        indexPoem = indexPoem + 1
+        nextStep()
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         outState.putString(KEY_FOR_STATE, titleOfPoem.text.toString())
+        if (indexPoem >= 13) {
+            indexPoem = 0
+        }
     }
 }
