@@ -39,16 +39,16 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         titleOfPoem = findViewById(R.id.titleOfLine)
 
-        Log.d(TAG_FOR_PUSHKIN,"onCreateTest")
+        Log.d(TAG_FOR_PUSHKIN, "onCreateTest")
 
         if (savedInstanceState != null) {
             titleOfPoem.text = savedInstanceState.getString(KEY_FOR_STATE)
         }
 
-        if (indexPoem == indexPoem + 1) {
+        if (indexPoem == indexPoem) {
             titleOfPoem.text = thePoem[indexPoem]
         } else {
-            titleOfPoem.text = thePoem[0]
+            titleOfPoem.text = thePoem[indexPoem + 1]
         }
         Log.d(TAG_FOR_PUSHKIN, "onCreate():${thePoem[indexPoem]}")
         indexPoem = indexPoem + 1
@@ -57,9 +57,9 @@ class MainActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
 
-        Log.d(TAG_FOR_PUSHKIN,"onStartTest")
+        Log.d(TAG_FOR_PUSHKIN, "onStartTest")
 
-        if (indexPoem == indexPoem + 1) {
+        if (indexPoem == indexPoem) {
             titleOfPoem.text = thePoem[indexPoem]
             Log.d(TAG_FOR_PUSHKIN, "onStart():${thePoem[indexPoem]}")
         }
@@ -69,11 +69,11 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
 
-        Log.d(TAG_FOR_PUSHKIN,"onResumeTest")
+        Log.d(TAG_FOR_PUSHKIN, "onResumeTest")
 
-        if (indexPoem == indexPoem + 1) {
+        if (indexPoem == indexPoem) {
             titleOfPoem.text = thePoem[indexPoem]
-            Log.d(TAG_FOR_PUSHKIN, "onResume():${thePoem[2]}")
+            Log.d(TAG_FOR_PUSHKIN, "onResume():${thePoem[indexPoem]}")
         }
         indexPoem = indexPoem + 1
     }
@@ -81,11 +81,11 @@ class MainActivity : AppCompatActivity() {
     override fun onPause() {
         super.onPause()
 
-        Log.d(TAG_FOR_PUSHKIN,"onPauseTest")
+        Log.d(TAG_FOR_PUSHKIN, "onPauseTest")
 
-        if (indexPoem == indexPoem + 1) {
+        if (indexPoem == indexPoem) {
             titleOfPoem.text = thePoem[indexPoem]
-            Log.d(TAG_FOR_PUSHKIN, "onPause():${thePoem[3]}")
+            Log.d(TAG_FOR_PUSHKIN, "onPause():${thePoem[indexPoem]}")
         }
         indexPoem = indexPoem + 1
     }
@@ -93,11 +93,11 @@ class MainActivity : AppCompatActivity() {
     override fun onStop() {
         super.onStop()
 
-        Log.d(TAG_FOR_PUSHKIN,"onStopTest")
+        Log.d(TAG_FOR_PUSHKIN, "onStopTest")
 
-        if (indexPoem == indexPoem + 1) {
+        if (indexPoem == indexPoem) {
             titleOfPoem.text = thePoem[indexPoem]
-            Log.d(TAG_FOR_PUSHKIN, "onStop():${thePoem[4]}")
+            Log.d(TAG_FOR_PUSHKIN, "onStop():${thePoem[indexPoem]}")
         }
         indexPoem = indexPoem + 1
     }
@@ -105,11 +105,11 @@ class MainActivity : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
 
-        Log.d(TAG_FOR_PUSHKIN,"onDestroyTest")
+        Log.d(TAG_FOR_PUSHKIN, "onDestroyTest")
 
-        if (indexPoem == indexPoem + 1) {
+        if (indexPoem == indexPoem) {
             titleOfPoem.text = thePoem[indexPoem]
-            Log.d(TAG_FOR_PUSHKIN, "onDestroy():${thePoem[5]}")
+            Log.d(TAG_FOR_PUSHKIN, "onDestroy():${thePoem[indexPoem]}")
         }
         indexPoem = indexPoem + 1
     }
